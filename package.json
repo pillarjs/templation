@@ -1,0 +1,26 @@
+{
+  "name": "templation",
+  "description": "an asynchronous, extensible view system",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jonathan Ong",
+    "email": "me@jongleberry.com",
+    "url": "http://jongleberry.com",
+    "twitter": "https://twitter.com/jongleberry"
+  },
+  "license": "MIT",
+  "repository": "expressjs/templation",
+  "dependencies": {
+    "bluebird": "2"
+  },
+  "devDependencies": {
+    "mocha": "1",
+
+    "jade": "*",
+    "then-jade": "*",
+    "swig": "*"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  }
+}
