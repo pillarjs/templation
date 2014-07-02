@@ -1,7 +1,9 @@
+# templation
 
-# Templation
+[![NPM Version](https://badge.fury.io/js/templation.svg)](https://badge.fury.io/js/templation)
+[![Build Status](https://travis-ci.org/expressjs/templation.svg?branch=master)](https://travis-ci.org/expressjs/templation)
 
-A view system similar to what you're used to with Express' `res.render()`.
+A node.js view system similar to what you're used to with Express' `res.render()`.
 Inspired by [co-views](https://github.com/visionmedia/co-views) and
 [consolidate.js](https://github.com/visionmedia/consolidate.js/).
 
@@ -10,18 +12,22 @@ Inspired by [co-views](https://github.com/visionmedia/co-views) and
 - Template adapters are integrated, but are retrieved lazily to avoid code bloat.
 - Easier plugin system for custom renderers.
 
-## API
+### Install
 
 ```bash
-npm i templation
+$ npm install templation
 ```
+
+## API
 
 ```js
 var Templation = require('templation')
-var view = new Templation()
+var views = new Templation()
+
+views.use('html', Templation.engines.html)
 ```
 
-### var view = new Templation([options])
+### var views = new Templation(options)
 
 Create a new view system.
 Options are:
@@ -31,7 +37,7 @@ Options are:
 - `root` - the root folder to look for templates.
   Defaults to `process.cwd()`, so __you should set this__.
 
-### view.use(extension, engine)
+#### views.use(extension, engine)
 
 Use a custom view engine.
 `extension` is a file extension to map this engine to.
@@ -43,20 +49,40 @@ Use a custom view engine.
 - `.render(compiled, options)` - `compiled` is whatever is compiled from `.compile()`.
   It should return (optionally via promise) a `String`, `Buffer`, or `Stream`
 
-### view.render(name, options)
+#### views.render(name, options)
 
 Render the template `name`, which resolves against `root`.
 Returns a promise, which then returns a `String`, `Buffer`, or `Stream`.
 
-Example node.js usage:
+#### views.cache
+
+Enable or disable the caching system. (`true` / `false`)
+
+### Templation.engines
+
+A list of included engines.
+Generally, the API usage is:
 
 ```js
-var templation = require('templation')
-var view = templation()
-view.use('html', templation.engines.html)
+views.use('html', Templation.engines.html)
+```
+
+Included adapters are:
+
+- [jade](http://jade-lang.com)
+- [then-jade](https://github.com/then/then-jade) - for streaming templates
+- [swig](http://paularmstrong.github.io/swig/)
+- html - just returns the file
+
+## Examples
+
+```js
+var Templation = require('templation')
+var views = new Templation()
+views.use('html', Templation.engines.html)
 
 http.createServer(function (req, res) {
-  view.render('home').then(function (html) {
+  views.render('home').then(function (html) {
     // assuming html is a string
     res.setHeader('Content-Length', Buffer.byteLength(html))
     res.setHeader('Content-Type', 'text/html')
@@ -68,22 +94,4 @@ http.createServer(function (req, res) {
 })
 ```
 
-### view.cache=
-
-Enable or disable the caching system.
-
-### templation.engines
-
-A list of included engines.
-Generally, the API usage is:
-
-```js
-view.use('html', templation.engines.html)
-```
-
-Included adapters are:
-
-- [jade](http://jade-lang.com)
-- [then-jade](https://github.com/then/then-jade) - for streaming templates
-- [swig](http://paularmstrong.github.io/swig/)
-- html - just returns the file
+## [License (MIT)](LICENSE)
