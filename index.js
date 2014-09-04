@@ -1,7 +1,7 @@
 
+var Promise = require('native-or-bluebird')
 var resolve = require('path').resolve
 var extname = require('path').extname
-var Promise = require('bluebird')
 var fs = require('fs')
 
 Templation.engines = require('./engines')

@@ -9,17 +9,31 @@
     "twitter": "https://twitter.com/jongleberry"
   },
   "license": "MIT",
-  "repository": "expressjs/templation",
+  "repository": "pillarjs/templation",
   "dependencies": {
+    "native-or-bluebird": "1",
     "bluebird": "2"
   },
   "devDependencies": {
+    "istanbul": "0",
     "mocha": "1",
     "jade": "*",
     "then-jade": "*",
     "swig": "*"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
-  }
+    "test": "mocha --reporter spec",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
+    "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
+  },
+  "keywords": [
+    "templates",
+    "views",
+    "async"
+  ],
+  "files": [
+    "index.js",
+    "engines",
+    "LICENSE"
+  ]
 }

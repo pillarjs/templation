@@ -1,7 +1,11 @@
 # templation
 
-[![NPM Version](https://badge.fury.io/js/templation.svg)](https://badge.fury.io/js/templation)
-[![Build Status](https://travis-ci.org/expressjs/templation.svg?branch=master)](https://travis-ci.org/expressjs/templation)
+[![NPM version][npm-image]][npm-url]
+[![Build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
+[![Dependency Status][david-image]][david-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
 
 A node.js view system similar to what you're used to with Express' `res.render()`.
 Inspired by [co-views](https://github.com/visionmedia/co-views) and
@@ -95,3 +99,20 @@ http.createServer(function (req, res) {
 ```
 
 ## [License (MIT)](LICENSE)
+
+[npm-image]: https://img.shields.io/npm/v/templation.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/templation
+[github-tag]: http://img.shields.io/github/tag/pillarjs/templation.svg?style=flat-square
+[github-url]: https://github.com/pillarjs/templation/tags
+[travis-image]: https://img.shields.io/travis/pillarjs/templation.svg?style=flat-square
+[travis-url]: https://travis-ci.org/pillarjs/templation
+[coveralls-image]: https://img.shields.io/coveralls/pillarjs/templation.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/pillarjs/templation?branch=master
+[david-image]: http://img.shields.io/david/pillarjs/templation.svg?style=flat-square
+[david-url]: https://david-dm.org/pillarjs/templation
+[license-image]: http://img.shields.io/npm/l/templation.svg?style=flat-square
+[license-url]: LICENSE
+[downloads-image]: http://img.shields.io/npm/dm/templation.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/templation
+[gittip-image]: https://img.shields.io/gittip/jonathanong.svg?style=flat-square
+[gittip-url]: https://www.gittip.com/jonathanong/
