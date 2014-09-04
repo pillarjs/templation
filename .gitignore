@@ -1,3 +1,8 @@
+
 .DS_Store*
+*.log
+*.gz
+
 node_modules
-npm-debug.log
+coverage
+cache
