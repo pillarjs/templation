@@ -19,6 +19,14 @@ describe('.use()', function () {
     })
   })
 
+  it('should support callbacks', function (done) {
+    return view.render('index.html', function (err, html) {
+      assert.ifError(err)
+      assert.equal(html.trim(), '<p>hi</p>')
+      done()
+    })
+  })
+
   it('should render a file without an extension', function () {
     return view.render('index').then(function (html) {
       assert.equal(html.trim(), '<p>hi</p>')

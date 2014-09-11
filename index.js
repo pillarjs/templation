@@ -31,13 +31,25 @@ Templation.prototype.use = function (ext, engine) {
   return this
 }
 
-Templation.prototype.render = function (name, options) {
+Templation.prototype.render = function (name, options, fn) {
+  if (typeof options === 'function') {
+    fn = options
+    options = {}
+  }
+
   var self = this
-  return this._compiled(name, options)
+  var promise = this._compiled(name, options)
     .then(function (compiled) {
       return self._render(compiled.__templation_engine, compiled, options)
     })
     .then(validateOutput)
+    
+  if (typeof fn === 'function') {
+    promise.then(function (out) {
+      fn(null, out)
+    }, fn)
+  }
+  return promise
 }
 
 // look up a template by a name
@@ -109,20 +121,12 @@ Templation.prototype._compiled = function (name, options) {
 
 // asynchronously compile a template
 Templation.prototype._compile = function (engine, filename, options) {
-  var out = engine.compile(filename, options || {})
-  // returns a promise
-  if (typeof out.then === 'function') return out
-  // returns anything else
-  return Promise.resolve(out)
+  return Promise.resolve(engine.compile(filename, options || {}))
 }
 
 // asynchronously render a template
 Templation.prototype._render = function (engine, compiled, options) {
-  var out = engine.render(compiled, options || {})
-  // returns a promise
-  if (typeof out.then === 'function') return out
-  // anything else
-  return Promise.resolve(out)
+  return Promise.resolve(engine.render(compiled, options || {}))
 }
 
 function validateOutput(out) {
