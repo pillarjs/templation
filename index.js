@@ -2,6 +2,7 @@
 var Promise = require('native-or-bluebird')
 var resolve = require('path').resolve
 var extname = require('path').extname
+var assert = require('assert')
 var fs = require('fs')
 
 Templation.engines = require('./engines')
@@ -23,8 +24,8 @@ function Templation(options) {
 }
 
 Templation.prototype.use = function (ext, engine) {
+  assert(engine, 'no engine defined')
   if (typeof ext !== 'string') throw new TypeError('each engine must map to an extension')
-  if (!engine) throw new Error('no engine defined')
   if (typeof engine.compile !== 'function') throw new TypeError('each engine must define a .compile()')
   if (typeof engine.render !== 'function') throw new TypeError('each engine must define a .render()')
   this.engines[ext] = engine
@@ -43,7 +44,7 @@ Templation.prototype.render = function (name, options, fn) {
       return self._render(compiled.__templation_engine, compiled, options)
     })
     .then(validateOutput)
-    
+
   if (typeof fn === 'function') {
     promise.then(function (out) {
       fn(null, out)
@@ -61,8 +62,7 @@ Templation.prototype._lookup = function (name) {
   var engine
 
   if (ext) {
-    engine = engines[ext]
-    if (!engine) throw new Error('no view engine found for: ' + ext)
+    assert(engine = engines[ext], 'no view engine found for: ' + ext)
     return [filename, engine]
   }
 
