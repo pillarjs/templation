@@ -3,28 +3,26 @@ var assert = require('assert')
 
 var templation = require('..')
 
-describe('engines.jade', function () {
+describe('engines.octet', function () {
   var view = templation({
     root: 'test/fixtures'
   })
-  view.use('jade', templation.engines.jade)
+  view.use('octet', templation.engines.octet)
 
   it('should render with an extension', function () {
-    view.render('index.jade', {user: {name: 'hi'}})
-    .then(function (html) {
-      assert.equal(html.trim(), '<p>hi</p>')
+    view.render('index.octet', {user:{name:'Charlike'}}).then(function (html) {
+      assert.equal(html.trim(), '<p>Charlike</p>')
     })
   })
 
   it('should render without an extension', function () {
-    view.render('index', {user: {name: 'hi'}})
-    .then(function (html) {
-      assert.equal(html.trim(), '<p>hi</p>')
+    view.render('index', {user:{name:'Charlike'}}).then(function (html) {
+      assert.equal(html.trim(), '<p>Charlike</p>')
     })
   })
 
   it('should throw if error and you can `.catch` it', function () {
-    view.render('index.jade', {hello: 'hi'})
+    view.render('index', {hello: 'hi'})
     .then().catch(function(err) {
       assert(err instanceof Error)
     })
