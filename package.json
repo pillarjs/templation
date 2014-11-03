@@ -15,14 +15,15 @@
     "bluebird": "2"
   },
   "devDependencies": {
-    "istanbul": "0",
-    "mocha": "1",
+    "istanbul": "*",
+    "mocha": "*",
     "jade": "*",
     "then-jade": "*",
-    "swig": "*"
+    "swig": "*",
+    "octet": "*"
   },
   "scripts": {
-    "test": "mocha --reporter spec",
+    "test": "mocha",
     "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
   },

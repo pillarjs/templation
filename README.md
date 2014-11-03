@@ -76,6 +76,7 @@ Included adapters are:
 - [jade](http://jade-lang.com)
 - [then-jade](https://github.com/then/then-jade) - for streaming templates
 - [swig](http://paularmstrong.github.io/swig/)
+- [octet](https://github.com/tunnckoCore/octet)
 - html - just returns the file
 
 ## Examples
